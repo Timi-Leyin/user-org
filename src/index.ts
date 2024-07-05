@@ -1,6 +1,5 @@
 import app from "./app";
+import { ENV } from "./constants/env";
 import logger from "./helpers/logger";
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => logger(`Server is Live on PORT ${PORT} 😊😊`));
+app.listen(ENV.PORT, () => logger(`Server is Live on PORT ${ENV.PORT} 😊😊`));

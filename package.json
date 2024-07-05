@@ -2,11 +2,14 @@
   "name": "tcag-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV='production' node ./dist/index.js",
+    "start": "cross-env NODE_ENV='production' node ./dist",
     "build": "tsc",
-    "postbuild": "",
+    "prebuild": "prisma generate",
+    "db:push":"prisma db push",
+    "db:pull":"prisma db pull",
+    "db:migrate":"prisma migrate dev",
     "dev": "cross-env NODE_ENV='development' ts-node-dev src/index.ts --watch ./*/**",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.16.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
