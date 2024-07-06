@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
@@ -8,9 +9,25 @@ datasource db {
 }
 
 model user {
-  id   Int    @unique @default(autoincrement())
-  uuid String @id @unique @default(cuid())
+  userId    String  @id @unique @default(cuid())
+  firstName String
+  lastName  String
+  email     String  @unique
+  password  String
+  phone     String?
 
+  organisations organisation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model organisation {
+  orgId       String @id @unique @default(cuid())
+  name        String
+  description String @default("")
+
+  users user[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
