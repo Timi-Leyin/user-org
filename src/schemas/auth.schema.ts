@@ -9,6 +9,6 @@ export const registrationSchema = [
 ];
 
 export const loginSchema = [
-  body("email").normalizeEmail().trim().isEmail(),
+  body("email").trim().isEmail(),
   body("password").trim().isLength({ min: 1 }),
 ];

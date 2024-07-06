@@ -25,7 +25,7 @@ describe("Token Generation", () => {
   it("should generate a token that expires correctly", async () => {
     const payload = { id: randomUser.userId };
     const expiresIn = "2s";
-    const delay = 2000;
+    const delay = 2100;
     const token = generateToken(payload, {
       expiresIn,
     });

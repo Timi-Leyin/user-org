@@ -2,11 +2,13 @@ import { getRandomUserInfo } from "../helpers/random-data";
 import request from "supertest";
 import app from "../app";
 import { db } from "../config/database";
+import { user as User } from "@prisma/client";
 
 // E2E TESTS
-const user = getRandomUserInfo();
+let user:Partial<User> ;
 const user2 = getRandomUserInfo();
 describe("User Registration", () => {
+  user = getRandomUserInfo();
   const res = request(app).post("/auth/register").send(user);
   it("It Should Register User Successfully with Default Organisation", async () => {
     const response = await res;
@@ -99,6 +101,7 @@ describe("User Registration", () => {
 
 describe("User Login", () => {
   it("It Should Log the user in successfully", async () => {
+    console.log(user)
     const res = await request(app)
       .post("/auth/login")
       .send({
