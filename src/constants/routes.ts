@@ -7,7 +7,9 @@ export const ROUTES = {
   LOGIN: "/login",
 
   // users
-  USER_ID: "/users/:id",
+  USER_ID: "/:id",
+  USERS:"/users",
+  
   // org
   ORG: "/organisations",
   ORG_ID: "/organisations/:id",
