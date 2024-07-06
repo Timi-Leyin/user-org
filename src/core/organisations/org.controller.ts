@@ -66,6 +66,11 @@ export const newOrg = async (req: Request, res: Response) => {
       data: {
         name,
         description,
+        users: {
+          connect: {
+            userId,
+          },
+        },
       },
     });
 
