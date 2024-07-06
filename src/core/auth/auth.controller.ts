@@ -5,6 +5,7 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { ENV } from "../../constants/env";
 import { user as User } from "@prisma/client";
+import { generateToken } from "../../helpers/token";
 
 export const registerController = async (req: Request, res: Response) => {
   try {
@@ -38,15 +39,9 @@ export const registerController = async (req: Request, res: Response) => {
         },
       },
     });
-    const token = jwt.sign(
-      {
-        id: user.userId,
-      },
-      ENV.JWT_SECRET,
-      {
-        expiresIn: "1d",
-      }
-    );
+    const token = generateToken({
+      id: user.userId,
+    });
 
     const userWithoutPassword: Partial<User> = { ...user };
     delete userWithoutPassword.password;
@@ -94,15 +89,9 @@ export const loginController = async (req: Request, res: Response) => {
       });
     }
 
-    const token = jwt.sign(
-      {
-        id: checkUser.userId,
-      },
-      ENV.JWT_SECRET,
-      {
-        expiresIn: "1d",
-      }
-    );
+    const token = generateToken({
+      id: checkUser.userId,
+    });
 
     const userWithoutPassword: Partial<User> = { ...checkUser };
     delete userWithoutPassword.password;

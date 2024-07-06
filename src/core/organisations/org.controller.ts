@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { db } from "../../config/database";
-import { body } from "express-validator";
 
 export const getAllOrg = async (req: Request, res: Response) => {
   try {
@@ -37,8 +36,9 @@ export const getOrgById = async (req: Request, res: Response) => {
     const { id } = req.params;
     // @ts-ignore
     const { userId } = req.user;
-    const org = await db.organisation.findMany({
+    const org = await db.organisation.findUnique({
       where: {
+        orgId: id,
         users: {
           some: {
             userId,
@@ -47,6 +47,13 @@ export const getOrgById = async (req: Request, res: Response) => {
       },
     });
 
+    if (!org) {
+      return res.status(404).json({
+        status: "Not Found",
+        message: "Organization Not Found or You Don't have Permission",
+        statusCode: 404,
+      });
+    }
     return res.status(200).json({
       status: "success",
       message: "Organisation Info Retrived Successfully",
@@ -69,7 +76,7 @@ export const newOrg = async (req: Request, res: Response) => {
     const org = await db.organisation.create({
       data: {
         name,
-        description,
+        description:description.slice(0,100),
         users: {
           connect: {
             userId,
@@ -115,6 +122,7 @@ export const addUserToOrg = async (req: Request, res: Response) => {
       message: "User added to organisation successfully",
     });
   } catch (error) {
+    console.log(error);
     return res.status(400).json({
       status: "Bad Request",
       message: "Client error",

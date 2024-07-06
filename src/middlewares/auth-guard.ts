@@ -2,35 +2,24 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { ENV } from "../constants/env";
 import { db } from "../config/database";
-export default async(req: Request, res: Response, next: NextFunction) => {
+import { verifyToken } from "../helpers/token";
+export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = (req.headers.authorization ?? "").split(" ");
     const [bearer, accessToken] = authHeader ?? [];
     if (accessToken) {
-      try {
-        const decoded: any = jwt.verify(accessToken, ENV.JWT_SECRET);
-        const user = await db.user.findFirst({
-          where: {
-            userId: decoded.id,
-          },
-        });
-        if (!user) {
-          return res.status(401).json({
-            status: "Bad request",
-            message: "Authentication failed",
-            statusCode: 401,
-          });
-        }
+      const decoded = await verifyToken(accessToken);
+      if (decoded) {
         // @ts-ignore
-        req.user = user;
+        req.user = decoded;
         return next();
-      } catch (error) {
-        return res.status(401).json({
-          status: "Bad request",
-          message: "Authentication failed",
-          statusCode: 401,
-        });
       }
+
+      return res.status(401).json({
+        status: "Bad request",
+        message: "Authentication failed",
+        statusCode: 401,
+      });
     }
     return res.status(401).json({
       status: "Bad request",

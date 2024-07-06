@@ -13,12 +13,14 @@
     "db:migrate": "prisma migrate dev",
     "dev": "cross-env NODE_ENV='development' ts-node-dev src/index.ts --watch ./*/**",
     "test": "cross-env NODE_ENV='test' jest --detectOpenHandles",
-    "test:watch": "npm run test --watchAll"
+    "test:watch": "cross-env NODE_ENV='test' jest --watchAll --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^5.16.1",
     "@types/jest": "^29.5.12",
     "@types/supertest": "^6.0.2",

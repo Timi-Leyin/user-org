@@ -17,7 +17,7 @@ app.use(morgan("dev"));
 
 // ATTACH OTHER ROUTES TO APIROUTES
 const apiRoutes = Router();
-apiRoutes.use(ROUTES.AUTH, authRoutes);
+app.use(ROUTES.AUTH, authRoutes);
 apiRoutes.use(ROUTES.USERS, usersRoute);
 apiRoutes.use(ROUTES.ORGANISATIONS, orgRoutes);
 
