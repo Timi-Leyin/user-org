@@ -2,10 +2,10 @@
   "name": "user-org",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
+  "main": "./dist/src",
   "scripts": {
-    "start": "npm run build && cross-env NODE_ENV='production' node ./dist",
-    "build": "tsc",
+    "start": "npm run build && cross-env NODE_ENV='production' node ./dist/src",
+    "build": "node ./scripts/clean-build.js && tsc",
     "prebuild": "prisma generate",
     "db:push": "prisma db push",
     "db:pull": "prisma db pull",
