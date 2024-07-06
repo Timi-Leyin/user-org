@@ -4,7 +4,7 @@ export const registrationSchema = [
   body("email").trim().isEmail(),
   body("firstName").trim().isLength({ min: 3 }),
   body("lastName").trim().isLength({ min: 3 }),
-  body("password").isStrongPassword().trim(),
+  body("password").isLength({min:6}).trim(),
   body("phone").trim().isMobilePhone("en-NG").optional(),
 ];
 
