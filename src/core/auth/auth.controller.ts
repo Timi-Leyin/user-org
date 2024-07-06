@@ -31,11 +31,11 @@ export const registerController = async (req: Request, res: Response) => {
         lastName,
         password,
         phone,
-        organisations:{
-            create:{
-                name:`${firstName}'s Organisation`
-            }
-        }
+        organisations: {
+          create: {
+            name: `${firstName}'s Organisation`,
+          },
+        },
       },
     });
     const token = jwt.sign(
@@ -60,8 +60,10 @@ export const registerController = async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Internal Server Error",
+    return res.status(400).json({
+      status: "Bad request",
+      message: "Registration unsuccessful",
+      statusCode: 400,
     });
   }
 };
@@ -113,8 +115,10 @@ export const loginController = async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Internal Server Error",
+    return res.status(400).json({
+      status: "Bad Request",
+      message: "Client error",
+      statusCode: 400,
     });
   }
 };

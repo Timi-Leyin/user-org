@@ -24,8 +24,10 @@ export const getAllOrg = async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Internal Server Error",
+    return res.status(400).json({
+      status: "Bad Request",
+      message: "Client error",
+      statusCode: 400,
     });
   }
 };
@@ -51,8 +53,10 @@ export const getOrgById = async (req: Request, res: Response) => {
       data: org,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Internal Server Error",
+    return res.status(400).json({
+      status: "Bad Request",
+      message: "Client error",
+      statusCode: 400,
     });
   }
 };
@@ -80,8 +84,10 @@ export const newOrg = async (req: Request, res: Response) => {
       data: org,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Internal Server Error",
+    return res.status(400).json({
+      status: "Bad Request",
+      message: "Client error",
+      statusCode: 400,
     });
   }
 };
@@ -109,8 +115,10 @@ export const addUserToOrg = async (req: Request, res: Response) => {
       message: "User added to organisation successfully",
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Internal Server Error",
+    return res.status(400).json({
+      status: "Bad Request",
+      message: "Client error",
+      statusCode: 400,
     });
   }
 };
