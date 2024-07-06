@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ROUTES } from "../../constants/routes";
-import { registerController } from "./auth.controller";
-import { registrationSchema } from "../../schemas/auth.schema";
+import { loginController, registerController } from "./auth.controller";
+import { loginSchema, registrationSchema } from "../../schemas/auth.schema";
 import bodyValidation from "../../middlewares/body-validation";
 
 const authRoutes = Router();
@@ -12,5 +12,6 @@ authRoutes.post(
   bodyValidation,
   registerController
 );
+authRoutes.post(ROUTES.LOGIN, loginSchema, bodyValidation, loginController);
 
 export default authRoutes;

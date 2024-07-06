@@ -4,6 +4,7 @@ export const ROUTES = {
   // authentication
   AUTH: "/auth",
   REGISTER: "/register",
+  LOGIN: "/login",
 
   // users
   USER_ID: "/users/:id",
