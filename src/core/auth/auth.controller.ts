@@ -31,6 +31,11 @@ export const registerController = async (req: Request, res: Response) => {
         lastName,
         password,
         phone,
+        organisations:{
+            create:{
+                name:`${firstName}'s Organisation`
+            }
+        }
       },
     });
     const token = jwt.sign(
