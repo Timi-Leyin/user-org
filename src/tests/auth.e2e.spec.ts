@@ -101,7 +101,6 @@ describe("User Registration", () => {
 
 describe("User Login", () => {
   it("It Should Log the user in successfully", async () => {
-    console.log(user)
     const res = await request(app)
       .post("/auth/login")
       .send({
