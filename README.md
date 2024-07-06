@@ -81,6 +81,7 @@ npm test:watch
 ```
 
 ## Api Endpoints
+- [Postman Documentation](https://www.postman.com/planetary-sunset-57477/workspace/pub/collection/26357022-3e7a00f7-8c04-4ec0-9e61-7f4473e81036?action=share&creator=26357022)
 
 
 
