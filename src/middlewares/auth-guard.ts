@@ -2,14 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { ENV } from "../constants/env";
 import { db } from "../config/database";
-export default (req: Request, res: Response, next: NextFunction) => {
+export default async(req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = (req.headers.authorization ?? "").split(" ");
     const [bearer, accessToken] = authHeader ?? [];
     if (accessToken) {
       try {
         const decoded: any = jwt.verify(accessToken, ENV.JWT_SECRET);
-        const user = db.user.findFirst({
+        const user = await db.user.findFirst({
           where: {
             userId: decoded.id,
           },

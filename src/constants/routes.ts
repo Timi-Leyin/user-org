@@ -1,5 +1,5 @@
 export const ROUTES = {
-  BASE: "/",
+  BASE: "/api",
 
   // authentication
   AUTH: "/auth",
@@ -8,10 +8,11 @@ export const ROUTES = {
 
   // users
   USER_ID: "/:id",
-  USERS:"/users",
-  
+  USERS: "/users",
+
   // org
-  ORG: "/organisations",
-  ORG_ID: "/organisations/:id",
-  ADD_USER_TO_ORG: "/organisations/:orgId/users",
+  ORGANISATIONS: "/organisations",
+  ORG: "/",
+  ORG_ID: "/:id",
+  ADD_USER_TO_ORG: "/:orgId/users",
 };

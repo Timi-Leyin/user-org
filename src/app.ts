@@ -7,6 +7,7 @@ import { corsOptions } from "./config/cors";
 import { ROUTES } from "./constants/routes";
 import authRoutes from "./core/auth/auth.routes";
 import usersRoute from "./core/users/user.route";
+import orgRoutes from "./core/organisations/org.route";
 
 
 app.use(express.urlencoded({extended:false}))
@@ -18,6 +19,7 @@ app.use(morgan("dev"));
 const apiRoutes = Router();
 apiRoutes.use(ROUTES.AUTH, authRoutes);
 apiRoutes.use(ROUTES.USERS, usersRoute);
+apiRoutes.use(ROUTES.ORGANISATIONS, orgRoutes);
 
 // DO NOT TOUCH >>>>>>>>
 app.get(ROUTES.BASE, defaultMiddleware);
