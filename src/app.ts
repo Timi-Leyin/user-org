@@ -22,6 +22,7 @@ apiRoutes.use(ROUTES.USERS, usersRoute);
 apiRoutes.use(ROUTES.ORGANISATIONS, orgRoutes);
 
 // DO NOT TOUCH >>>>>>>>
+app.get("/", defaultMiddleware);
 app.get(ROUTES.BASE, defaultMiddleware);
 app.use(ROUTES.BASE, apiRoutes);
 app.use(errorMiddleware);
