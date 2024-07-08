@@ -2,9 +2,9 @@ import { body } from "express-validator";
 
 export const registrationSchema = [
   body("email").trim().isEmail(),
-  body("firstName").trim().isLength({ min: 3 }),
-  body("lastName").trim().isLength({ min: 3 }),
-  body("password").isLength({min:6}).trim(),
+  body("firstName").trim().isLength({ min: 1 }),
+  body("lastName").trim().isLength({ min: 1 }),
+  body("password").trim().isLength({min:1}),
   body("phone").trim().optional(),
 ];
 
